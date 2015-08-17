@@ -205,7 +205,7 @@ public class MainActivityFragment extends Fragment {
         Uri uri = Uri.parse(BASE_URL).buildUpon()
                 .appendPath(movie_id + "?")
                 .appendQueryParameter(API_KEY, api_key)
-                .appendQueryParameter(APP_TO_RES, "trailer")
+                .appendQueryParameter(APP_TO_RES, "trailers")
                 .build();
 
 
@@ -273,31 +273,32 @@ public class MainActivityFragment extends Fragment {
             double budget = jsonObject.getDouble("budget");
             double revenue = jsonObject.getDouble("revenue");
 
-            JSONArray trailersArray = jsonObject.getJSONArray("trailers");
-            //JSONArray youtubeArray = trailersArray.getJSONArray(1);
-//            Trailer[] trailers = new Trailer[youtubeArray.length()];
-//            for (int i= 0; i < youtubeArray.length(); i++){
-//
-//                JSONObject trailerObject = youtubeArray.getJSONObject(i);
-//
-//                String name = trailerObject.getString("name");
-//                String source = trailerObject.getString("source");
-//                String type = trailerObject.getString("type");
-//
-//                Trailer trailer = new Trailer(name, source, type);
-//                trailers[i] = trailer;
-//
-//                Log.d(LOG, name+" "+source+" "+type);
-//            }
+            JSONObject trailerObject = jsonObject.getJSONObject("trailers");
+            JSONArray youtubeArray = trailerObject.getJSONArray("youtube");
+            Trailer[] trailers = new Trailer[youtubeArray.length()];
+            for (int i= 0; i < youtubeArray.length(); i++){
 
-//            Movie movie = new Movie(movieId,title,posterPath,backDropPath,overview,releaseDate,
-//                    new Trailer[1],imdbId,homePage,voteCount,voteAverage,budget,revenue);
+                JSONObject trailerjson = youtubeArray.getJSONObject(i);
+
+                String name = trailerjson.getString("name");
+                String source = trailerjson.getString("source");
+                String type = trailerjson.getString("type");
+
+                Trailer trailer = new Trailer(name, source, type);
+                trailers[i] = trailer;
+
+                Log.d(LOG, name+" "+source+" "+type);
+            }
+
+            Movie movie = new Movie(movieId,title,posterPath,backDropPath,overview,releaseDate,
+                    trailers,imdbId,homePage,voteCount,voteAverage,budget,revenue);
 
             Log.d(LOG, movieId+" "+title+" "+posterPath+" "+backDropPath+" "+overview
-                    +" "+ releaseDate+" "+imdbId+" "+homePage+" "
+                    +" "+ releaseDate+" "+" "+imdbId+" "+homePage+" "
                     +voteCount +" "+voteAverage+" "+budget+" "+revenue);
 
-            return null;
+            return movie;
+
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d(LOG, "Parse Movie Failed");
