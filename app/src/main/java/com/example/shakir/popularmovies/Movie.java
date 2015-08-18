@@ -10,28 +10,28 @@ public class Movie {
     String mBackDropPath;
     String mOverview;
     String mReleaseDate;
+    int mRuntime;
     Trailer[] mTrailers;
     String mImdbId;
     String mHomePage;
     double mVoteCount;
     double mVoteAverage;
-    double mBudget;
-    double mRevenue;
 
-    public Movie(int movieId, String title, String posterPath, String backDropPath, String overview, String releaseDate, Trailer[] trailers, String imdbId, String homePage, double voteCount, double voteAverage, double budget, double revenue) {
+
+    public Movie(int movieId, String title, String posterPath, String backDropPath, String overview, String releaseDate, int runtime, Trailer[] trailers, String imdbId, String homePage, double voteCount, double voteAverage) {
         mMovieId = movieId;
         mTitle = title;
         mPosterPath = posterPath;
         mBackDropPath = backDropPath;
         mOverview = overview;
         mReleaseDate = releaseDate;
+        mRuntime = runtime;
         mTrailers = trailers;
         mImdbId = imdbId;
         mHomePage = homePage;
         mVoteCount = voteCount;
         mVoteAverage = voteAverage;
-        mBudget = budget;
-        mRevenue = revenue;
+
     }
 
     public int getMovieId() {
@@ -122,19 +122,82 @@ public class Movie {
         mVoteAverage = voteAverage;
     }
 
-    public double getBudget() {
-        return mBudget;
+    public int getRuntime() {
+        return mRuntime;
     }
 
-    public void setBudget(double budget) {
-        mBudget = budget;
+    public void setRuntime(int runtime) {
+        mRuntime = runtime;
     }
 
-    public double getRevenue() {
-        return mRevenue;
+    public String getFinalPosterPath() {
+
+        String link = "http://image.tmdb.org/t/p/";
+        String size = "w185";
+        //Other available options "w92", "w154", "w185", "w342", "w500", "w780", or "original"
+        String seprator = "/";
+
+        return link + size + mPosterPath;
     }
 
-    public void setRevenue(double revenue) {
-        mRevenue = revenue;
+    public String getFinalBackdropPath() {
+
+        String link = "http://image.tmdb.org/t/p/";
+        String size = "w342";
+        //Other available options "w92", "w154", "w185", "w342", "w500", "w780", or "original"
+        String seprator = "/";
+
+        return link + size + mBackDropPath;
+    }
+
+    public String getYear() {
+
+        int index = mReleaseDate.indexOf('-');
+        int start = index + 1;
+        int end = index + 3;
+        int month = Integer.parseInt(mReleaseDate.substring(start, end));
+        String monthString;
+        switch (month) {
+            case 1:
+                monthString = "January";
+                break;
+            case 2:
+                monthString = "February";
+                break;
+            case 3:
+                monthString = "March";
+                break;
+            case 4:
+                monthString = "April";
+                break;
+            case 5:
+                monthString = "May";
+                break;
+            case 6:
+                monthString = "June";
+                break;
+            case 7:
+                monthString = "July";
+                break;
+            case 8:
+                monthString = "August";
+                break;
+            case 9:
+                monthString = "September";
+                break;
+            case 10:
+                monthString = "October";
+                break;
+            case 11:
+                monthString = "November";
+                break;
+            case 12:
+                monthString = "December";
+                break;
+            default:
+                monthString = "Invalid month";
+                break;
+        }
+        return monthString + " " + mReleaseDate.substring(0, 4);
     }
 }
