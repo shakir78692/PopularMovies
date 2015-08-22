@@ -173,6 +173,7 @@ public class DetailActivityFragment extends Fragment {
             String posterPath = jsonObject.getString("poster_path");
             String backDropPath = jsonObject.getString("backdrop_path");
             String overview = jsonObject.getString("overview");
+            String tagline = jsonObject.getString("tagline");
             String releaseDate = jsonObject.getString("release_date");
             String imdbId = jsonObject.getString("imdb_id");
             String homePage = jsonObject.getString("homepage");
@@ -197,11 +198,11 @@ public class DetailActivityFragment extends Fragment {
                 Log.d(LOG, name + " " + source + " " + type);
             }
 
-            Movie movie = new Movie(movieId, title, posterPath, backDropPath, overview, releaseDate,
+            Movie movie = new Movie(movieId, title, posterPath, backDropPath, overview,tagline, releaseDate,
                     runtime, trailers, imdbId, homePage, voteCount, voteAverage);
 
             Log.d(LOG, movieId + " " + title + " " + posterPath + " " + backDropPath + " " + overview
-                    + " " + releaseDate + " " + " " + imdbId + " " + homePage + " "
+                    + " " + releaseDate + " " + tagline+" " + imdbId + " " + homePage + " "
                     + voteCount + " " + voteAverage);
 
             return movie;

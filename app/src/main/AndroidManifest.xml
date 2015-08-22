@@ -28,6 +28,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.shakir.popularmovies.MainActivity"/>
         </activity>
+        <provider
+            android:authorities="com.example.shakir.popularmovies"
+            android:name=".data.MovieProvider"
+            android:exported="false"
+            android:syncable="true"/>
     </application>
 
 </manifest>

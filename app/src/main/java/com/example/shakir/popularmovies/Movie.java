@@ -9,6 +9,7 @@ public class Movie {
     String mPosterPath;
     String mBackDropPath;
     String mOverview;
+    String mTagline;
     String mReleaseDate;
     int mRuntime;
     Trailer[] mTrailers;
@@ -18,12 +19,13 @@ public class Movie {
     double mVoteAverage;
 
 
-    public Movie(int movieId, String title, String posterPath, String backDropPath, String overview, String releaseDate, int runtime, Trailer[] trailers, String imdbId, String homePage, double voteCount, double voteAverage) {
+    public Movie(int movieId, String title, String posterPath, String backDropPath, String overview,String tagline, String releaseDate, int runtime, Trailer[] trailers, String imdbId, String homePage, double voteCount, double voteAverage) {
         mMovieId = movieId;
         mTitle = title;
         mPosterPath = posterPath;
         mBackDropPath = backDropPath;
         mOverview = overview;
+        mTagline = tagline;
         mReleaseDate = releaseDate;
         mRuntime = runtime;
         mTrailers = trailers;
