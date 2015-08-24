@@ -18,7 +18,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/backdropView">
+        android:layout_below="@+id/backdropView"
+        android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,9 +32,11 @@
                 android:layout_alignParentTop="false"
                 android:layout_below="@+id/backdropView"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
                 android:background="#FF5722"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp">
 
                 <ImageView
                     android:id="@+id/posterView"
@@ -55,7 +58,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_weight="1"
                         android:background="#E64A19"
                         android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
@@ -64,7 +66,8 @@
                         android:textColor="#FFF"
                         android:textSize="22sp"
                         android:textStyle="bold"
-                        android:typeface="sans"/>
+                        android:typeface="sans"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/yearView"
@@ -104,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:background="#D50000"
                         android:text="@string/favourite_button_label"
-                        android:textColor="#FFF"/>
+                        android:textColor="#FFF" />
 
                 </LinearLayout>
 
@@ -119,7 +122,6 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="#FF5722"
                 android:padding="16dp"

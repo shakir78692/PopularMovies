@@ -2,10 +2,12 @@ package com.example.shakir.popularmovies;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -79,15 +81,15 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
 
         UpdateDisplay();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
     }
 
     public void getPosters(String sort_by){
@@ -158,7 +160,9 @@ public class MainActivityFragment extends Fragment {
 
     private void UpdateDisplay() {
 
-        getPosters("popularity.desc");
+        SharedPreferences sharedprfs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String sort_by = sharedprfs.getString(getString(R.string.pref_sort_by_key), getString(R.string.pref_sort_by_popularity));
+        getPosters(sort_by);
 
     }
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_sort_by_label">
+        <item>@string/pref_sort_by_label_popularity</item>
+        <item>@string/pref_sort_by_label_revenue</item>
+        <item>@string/pref_sort_by_label_rating</item>
+    </string-array>
+
+    <string-array name="pref_sort_by_value">
+        <item>@string/pref_sort_by_popularity</item>
+        <item>@string/pref_sort_by_revenue</item>
+        <item>@string/pref_sort_by_rating</item>
+    </string-array>
+</resources>

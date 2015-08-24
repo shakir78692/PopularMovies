@@ -4,4 +4,14 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_detail">Details</string>
     <string name="favourite_button_label">FAVOURITE</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_sort_by_label_popularity">Popularity</string>
+    <string name="pref_sort_by_label_revenue">Revenue</string>
+    <string name="pref_sort_by_label_rating">Highest Rated</string>
+    <string name="pref_sort_by_label">Sort By</string>
+    <string name="pref_sort_by_key" translatable="false">units</string>
+    <string name="pref_sort_by_popularity" translatable="false">popularity.desc</string>
+    <string name="pref_sort_by_revenue" translatable="false">revenue.desc</string>
+    <string name="pref_sort_by_rating" translatable="false">vote_average.desc</string>
 </resources>
