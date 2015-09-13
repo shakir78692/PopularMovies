@@ -30,7 +30,7 @@
 
         <provider
             android:name=".data.MovieProvider"
-            android:authorities="com.example.shakir.popularmovies"
+            android:authorities="com.example.shakir.popularmovies.app"
             android:exported="false"
             android:syncable="true" />
 

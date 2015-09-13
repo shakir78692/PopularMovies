@@ -1,5 +1,6 @@
 package com.example.shakir.popularmovies;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -38,9 +41,18 @@ public class MainActivityFragment extends Fragment {
 
     final String LOG = MainActivityFragment.class.getSimpleName();
 
-    Poster[] mPosters;
-    GridAdapter gridAdapter;
-    GridView gridView;
+    protected Poster[] mPosters;
+    protected GridAdapter gridAdapter;
+    protected GridView gridView;
+
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
+    protected SwipeRefreshLayout.OnRefreshListener mRefreshListner = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+
+            UpdateDisplay();
+        }
+    };
 
     public MainActivityFragment() {
     }
@@ -55,22 +67,14 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        mPosters = new Poster[1];
-        Poster poster = new Poster(198184,"abc","/7SGGUiTE6oc2fh9MjIk5M00dsQd.jpg");
-        mPosters[0] = poster;
-        gridAdapter = new GridAdapter(getActivity(),mPosters);
+        TextView textView = (TextView) rootView.findViewById(android.R.id.empty);
+        mPosters = new Poster[0];
         gridView = (GridView) rootView.findViewById(R.id.gridView);
-        gridView.setAdapter(gridAdapter);
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra("MOVIE_ID", id);
-                startActivity(intent);
-            }
-        });
+        gridView.setEmptyView(textView);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(mRefreshListner);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.blue_500, R.color.red_500,
+                R.color.yellow_500, R.color.green_500);
 
         return rootView;
     }
@@ -118,15 +122,25 @@ public class MainActivityFragment extends Fragment {
             Call call = client.newCall(request);
 
             call.enqueue(new Callback() {
+
                 @Override
                 public void onFailure(Request request, IOException e) {
 
                     Log.d(LOG,"Request Failed");
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (mSwipeRefreshLayout.isRefreshing()) {
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            }
+                        }
+                    });
 
                 }
 
                 @Override
                 public void onResponse(Response response) throws IOException {
+
 
                     String jsonData = response.body().string();
 
@@ -138,24 +152,48 @@ public class MainActivityFragment extends Fragment {
                             @Override
                             public void run() {
 
-                                UpdateAdapter(posters);
+                                if (mSwipeRefreshLayout.isRefreshing()) {
+                                    mSwipeRefreshLayout.setRefreshing(false);
+                                }
+                                mPosters = posters;
+                                UpdateAdapter();
                             }
                         });
                     }
-                    //Log.d(LOG, jsonData);
                 }
             });
         }
         else {
 
+            if (mSwipeRefreshLayout.isRefreshing()) {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+
             Log.d(LOG, "No Internet Connection");
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(R.string.general_error_title)
+                    .setMessage(R.string.no_internet_error)
+                    .setPositiveButton(android.R.string.ok,null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
-        //else show no internet connectivity :-(
     }
 
-    private void UpdateAdapter(Poster[] posters) {
+    private void UpdateAdapter() {
 
-        gridAdapter.setPosters(posters);
+        gridAdapter = new GridAdapter(getActivity(),mPosters);
+        gridView.setAdapter(gridAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("MOVIE_ID", id);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void UpdateDisplay() {
@@ -165,7 +203,6 @@ public class MainActivityFragment extends Fragment {
         getPosters(sort_by);
 
     }
-
 
     private Poster[] ParsePosters(String jsonString) {
 
@@ -194,7 +231,6 @@ public class MainActivityFragment extends Fragment {
             return null;
         }
     }
-
 
     private boolean isNetworkAvailable() {
 

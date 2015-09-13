@@ -36,8 +36,8 @@ public class MovieDBHelper extends SQLiteOpenHelper {
                 + MoviesEntry.COLUMN_IMDB_ID + " TEXT, "
                 + MoviesEntry.COLUMN_HOMEPAGE + " TEXT, "
                 + MoviesEntry.COLUMN_VOTE_COUNT + " INTEGER, "
-                + MoviesEntry.COLUMN_VOTE_AVERAGE + " REAL NOT NULL"
-                + "UNIQUE (" + MoviesEntry.COLUMN_MOVIE_ID + "ON CONFLICT REPLACE);";
+                + MoviesEntry.COLUMN_VOTE_AVERAGE + " REAL NOT NULL, "
+                + "UNIQUE (" + MoviesEntry.COLUMN_MOVIE_ID + ") ON CONFLICT REPLACE);";
 
         db.execSQL(CREATE_MOVIE_DATABASE);
 

@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.text.TextUtils;
 
 import static com.example.shakir.popularmovies.data.MovieContract.*;
 
@@ -32,8 +33,19 @@ public class MovieProvider extends ContentProvider {
         return matcher;
     }
 
+
+    private static final SQLiteQueryBuilder mQueryBuilder;
+    static {
+
+        mQueryBuilder = new SQLiteQueryBuilder();
+        mQueryBuilder.setTables(MoviesEntry.TABLE_NAME);
+
+    }
+
+
     private static final String sMovieSelection = MoviesEntry.TABLE_NAME+"."
             + MoviesEntry.COLUMN_MOVIE_ID+" = ? ";
+
 
     private Cursor getMovieById(Uri uri, String[] projection, String sortOrder){
 
@@ -45,13 +57,7 @@ public class MovieProvider extends ContentProvider {
         selection = sMovieSelection;
         selectionArgs = new String[]{movie_id};
 
-        return new SQLiteQueryBuilder().query(mOpenHelper.getReadableDatabase(),
-                projection,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                sortOrder);
+        return mQueryBuilder.query(mOpenHelper.getReadableDatabase(),projection,selection,selectionArgs,null,null,sortOrder);
     }
 
     @Override
@@ -140,6 +146,11 @@ public class MovieProvider extends ContentProvider {
             case MOVIES:
                 rowsDeleted = db.delete(MoviesEntry.TABLE_NAME,selection,selectionArgs);
                 break;
+            case MOVIE_ID:
+                String movie_id = MoviesEntry.getMovieIdFromUri(uri);
+                rowsDeleted = db.delete(MoviesEntry.TABLE_NAME,
+                        MoviesEntry.COLUMN_MOVIE_ID+" + "+movie_id+
+                                (!TextUtils.isEmpty(selection) ? " AND (" +selection +')': ""),selectionArgs);
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -159,8 +170,15 @@ public class MovieProvider extends ContentProvider {
         if (null == selection) selection = "1";
         switch (match){
             case MOVIES:
-                rowsUpdated = db.delete(MoviesEntry.TABLE_NAME,selection,selectionArgs);
+                rowsUpdated = db.update(MoviesEntry.TABLE_NAME,values,selection,selectionArgs);
                 break;
+            case MOVIE_ID:
+                String movie_id = MoviesEntry.getMovieIdFromUri(uri);
+                rowsUpdated = db.update(MoviesEntry.TABLE_NAME,
+                        values,
+                        MoviesEntry.COLUMN_MOVIE_ID+" + "+ movie_id +
+                                (!TextUtils.isEmpty(selection) ? " AND (" +selection +')': ""),
+                        selectionArgs);
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }

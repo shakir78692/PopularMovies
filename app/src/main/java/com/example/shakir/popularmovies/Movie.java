@@ -26,6 +26,7 @@ public class Movie {
         mBackDropPath = backDropPath;
         mOverview = overview;
         mTagline = tagline;
+
         mReleaseDate = releaseDate;
         mRuntime = runtime;
         mTrailers = trailers;
@@ -34,6 +35,14 @@ public class Movie {
         mVoteCount = voteCount;
         mVoteAverage = voteAverage;
 
+    }
+
+    public String getTagline() {
+        return mTagline;
+    }
+
+    public void setTagline(String tagline) {
+        mTagline = tagline;
     }
 
     public int getMovieId() {

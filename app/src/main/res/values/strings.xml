@@ -14,4 +14,7 @@
     <string name="pref_sort_by_popularity" translatable="false">popularity.desc</string>
     <string name="pref_sort_by_revenue" translatable="false">revenue.desc</string>
     <string name="pref_sort_by_rating" translatable="false">vote_average.desc</string>
+    <string name="grid_empty_label">No movies found!</string>
+    <string name="general_error_title">Oops!</string>
+    <string name="no_internet_error">No internet connectivity</string>
 </resources>

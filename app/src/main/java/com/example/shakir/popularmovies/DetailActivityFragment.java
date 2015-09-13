@@ -1,5 +1,7 @@
 package com.example.shakir.popularmovies;
 
+import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -11,9 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.shakir.popularmovies.data.MovieContract;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
@@ -41,6 +46,7 @@ public class DetailActivityFragment extends Fragment {
     TextView runtimeView;
     TextView yearView;
     TextView ratingView;
+    Button fav;
 
     public DetailActivityFragment() {
     }
@@ -62,6 +68,7 @@ public class DetailActivityFragment extends Fragment {
         runtimeView = (TextView) rootView.findViewById(R.id.runtimeView);
         yearView = (TextView) rootView.findViewById(R.id.yearView);
         ratingView = (TextView) rootView.findViewById(R.id.ratingView);
+        fav = (Button) rootView.findViewById(R.id.favButton);
 
         getMovie(movie_id);
 
@@ -92,6 +99,32 @@ public class DetailActivityFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContentValues values = new ContentValues();
+                values.put(MovieContract.MoviesEntry.COLUMN_MOVIE_ID, movie.getMovieId());
+                values.put(MovieContract.MoviesEntry.COLUMN_TITLE, movie.getTitle());
+                values.put(MovieContract.MoviesEntry.COLUMN_POSTER_PATH, movie.getPosterPath());
+                values.put(MovieContract.MoviesEntry.COLUMN_BACKDROP_PATH, movie.getBackDropPath());
+                values.put(MovieContract.MoviesEntry.COLUMN_OVERVIEW, movie.getOverview());
+                values.put(MovieContract.MoviesEntry.COLUMN_TAGLINE, movie.getTagline());
+                values.put(MovieContract.MoviesEntry.COLUMN_RELEASE_DATE, movie.getReleaseDate());
+                values.put(MovieContract.MoviesEntry.COLUMN_RUNTIME, movie.getRuntime());
+                values.put(MovieContract.MoviesEntry.COLUMN_TRAILERS, String.valueOf(movie.getTrailers()));
+                values.put(MovieContract.MoviesEntry.COLUMN_IMDB_ID, movie.getImdbId());
+                values.put(MovieContract.MoviesEntry.COLUMN_HOMEPAGE, movie.getHomePage());
+                values.put(MovieContract.MoviesEntry.COLUMN_VOTE_COUNT, movie.getVoteCount());
+                values.put(MovieContract.MoviesEntry.COLUMN_VOTE_AVERAGE, movie.getVoteAverage());
+
+                Uri uri = getActivity().getContentResolver().insert(MovieContract.MoviesEntry.CONTENT_URI,
+                        values);
+
+                Toast.makeText(getActivity(),uri.toString(),Toast.LENGTH_LONG).show();
+            }
+        });
+
 
     }
 
@@ -158,6 +191,12 @@ public class DetailActivityFragment extends Fragment {
         } else {
 
             Log.d(LOG, "No Internet Connection");
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(R.string.general_error_title)
+                    .setMessage(R.string.no_internet_error)
+                    .setPositiveButton(android.R.string.ok,null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
             return null;
         }
 

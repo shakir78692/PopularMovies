@@ -4,10 +4,36 @@
                 android:layout_height="match_parent"
                 tools:context=".MainActivityFragment">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gridView"
         android:layout_alignParentTop="true"
-        android:numColumns="2"/>
+        android:numColumns="2"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp"
+        android:padding="4dp"
+        android:clipToPadding="false"
+        />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/grid_empty_label"
+        android:id="@android:id/empty"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"/>
+
+
 </RelativeLayout>
