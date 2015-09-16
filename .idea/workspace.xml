@@ -22,23 +22,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12fd3152-abcc-491b-a529-56855478929b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/DetailActivityFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/DetailActivityFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/GridAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/GridAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/MainActivityFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/MainActivityFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/Movie.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/Movie.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/data/MovieContract.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/data/MovieContract.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/data/MovieDBHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/data/MovieDBHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/data/MovieProvider.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/data/MovieProvider.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_2_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_detail.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_detail.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_22_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_22_2_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_1.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -67,7 +53,20 @@
     <favorites_list name="PopularMovies" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="DetailActivityFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/DetailActivityFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.9044944">
+              <caret line="152" column="47" selection-start-line="152" selection-start-column="47" selection-end-line="152" selection-end-column="47" />
+              <folding>
+                <element signature="method#isNetworkAvailable#0;class#DetailActivityFragment#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1192,7 +1191,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4325066859000" />
+        <entry key="$PROJECT_DIR$" value="4327137168000" />
         <entry key="D:\Shakir\Development\PopularMovies" value="4319721164794" />
       </map>
     </option>
@@ -1532,11 +1531,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/data/MovieContract.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/Movie.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/DetailActivityFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/MainActivityFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/data/MovieProvider.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/data/MovieDBHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/DetailActivityFragment.java" />
       </list>
     </option>
   </component>
@@ -1577,6 +1576,50 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="PopularMovies">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="PopularMovies">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PopularMovies" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PopularMovies" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PopularMovies" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -1609,53 +1652,41 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PopularMovies" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="PopularMovies">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="PopularMovies">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PopularMovies" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="popularmovies" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PopularMovies" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PopularMovies" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PopularMovies" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1680,6 +1711,7 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_22" />
     <property name="last_opened_file_path" value="$USER_HOME$/PopularMovies" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -1906,12 +1938,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2560" height="1440" extended-state="6" />
+    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32883242" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1933,6 +1964,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32883242" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32986626" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1966,8 +1998,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="98" column="36" selection-start-line="98" selection-start-column="36" selection-end-line="98" selection-end-column="36" />
           <folding>
-            <element signature="method#onCreateView#0;class#DetailActivityFragment#0" expanded="false" />
-            <element signature="method#getMovie#0;class#DetailActivityFragment#0" expanded="false" />
             <element signature="method#isNetworkAvailable#0;class#DetailActivityFragment#0" expanded="false" />
           </folding>
         </state>
@@ -1989,15 +2019,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#MainActivityFragment#0;class#MainActivityFragment#0" expanded="false" />
-            <element signature="method#onCreateView#0;class#MainActivityFragment#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivityFragment#0" expanded="false" />
-            <element signature="method#onOptionsItemSelected#0;class#MainActivityFragment#0" expanded="false" />
+            <element signature="method#MainActivityFragment#0;class#MainActivityFragment#0" expanded="false" />
+            <element signature="method#onCreateOptionsMenu#0;class#MainActivityFragment#0" expanded="false" />
             <element signature="method#onStart#0;class#MainActivityFragment#0" expanded="false" />
-            <element signature="method#UpdateAdapter#0;class#MainActivityFragment#0" expanded="false" />
-            <element signature="method#UpdateDisplay#0;class#MainActivityFragment#0" expanded="false" />
-            <element signature="method#ParsePosters#0;class#MainActivityFragment#0" expanded="false" />
-            <element signature="method#isNetworkAvailable#0;class#MainActivityFragment#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2007,8 +2032,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="98" column="36" selection-start-line="98" selection-start-column="36" selection-end-line="98" selection-end-column="36" />
           <folding>
-            <element signature="method#onCreateView#0;class#DetailActivityFragment#0" expanded="false" />
-            <element signature="method#getMovie#0;class#DetailActivityFragment#0" expanded="false" />
             <element signature="method#isNetworkAvailable#0;class#DetailActivityFragment#0" expanded="false" />
           </folding>
         </state>
@@ -2327,12 +2350,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#1077#1078#0" expanded="true" />
-            <element signature="e#1108#1109#0" expanded="true" />
-            <element signature="e#1154#1155#0" expanded="true" />
-            <element signature="e#1188#1189#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2352,14 +2369,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
           <folding>
-            <element signature="method#MainActivityFragment#0;class#MainActivityFragment#0" expanded="false" />
-            <element signature="method#onCreateView#0;class#MainActivityFragment#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#MainActivityFragment#0" expanded="false" />
-            <element signature="method#onOptionsItemSelected#0;class#MainActivityFragment#0" expanded="false" />
-            <element signature="e#3965#4281#0" expanded="true" />
-            <element signature="e#4280#4281#0" expanded="true" />
-            <element signature="method#UpdateAdapter#0;class#MainActivityFragment#0" expanded="false" />
-            <element signature="method#ParsePosters#0;class#MainActivityFragment#0" expanded="false" />
+            <element signature="method#MainActivityFragment#0;class#MainActivityFragment#0" expanded="false" />
+            <element signature="method#onCreateOptionsMenu#0;class#MainActivityFragment#0" expanded="false" />
+            <element signature="method#onStart#0;class#MainActivityFragment#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2368,7 +2381,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32022473">
           <caret line="25" column="56" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2376,29 +2388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.66292137">
           <caret line="114" column="53" selection-start-line="114" selection-start-column="53" selection-end-line="114" selection-end-column="53" />
-          <folding>
-            <element signature="method#getMovieById#0;class#MovieProvider#0" expanded="false" />
-            <element signature="method#onCreate#0;class#MovieProvider#0" expanded="false" />
-            <element signature="method#query#0;class#MovieProvider#0" expanded="false" />
-            <element signature="method#getType#0;class#MovieProvider#0" expanded="false" />
-            <element signature="method#insert#0;class#MovieProvider#0" expanded="false" />
-            <element signature="method#delete#0;class#MovieProvider#0" expanded="false" />
-            <element signature="method#update#0;class#MovieProvider#0" expanded="false" />
-            <element signature="method#bulkInsert#0;class#MovieProvider#0" expanded="false" />
-            <element signature="method#shutdown#0;class#MovieProvider#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/DetailActivityFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33258426">
-          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-          <folding>
-            <element signature="method#onCreateView#0;class#DetailActivityFragment#0" expanded="false" />
-            <element signature="method#getMovie#0;class#DetailActivityFragment#0" expanded="false" />
-            <element signature="method#isNetworkAvailable#0;class#DetailActivityFragment#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2407,6 +2396,16 @@
         <state vertical-scroll-proportion="0.53932583">
           <caret line="32" column="70" selection-start-line="32" selection-start-column="70" selection-end-line="32" selection-end-column="70" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/shakir/popularmovies/DetailActivityFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.9044944">
+          <caret line="152" column="47" selection-start-line="152" selection-start-column="47" selection-end-line="152" selection-end-column="47" />
+          <folding>
+            <element signature="method#isNetworkAvailable#0;class#DetailActivityFragment#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

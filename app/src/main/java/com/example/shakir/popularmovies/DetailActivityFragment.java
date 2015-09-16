@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -103,29 +104,54 @@ public class DetailActivityFragment extends Fragment {
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContentValues values = new ContentValues();
-                values.put(MovieContract.MoviesEntry.COLUMN_MOVIE_ID, movie.getMovieId());
-                values.put(MovieContract.MoviesEntry.COLUMN_TITLE, movie.getTitle());
-                values.put(MovieContract.MoviesEntry.COLUMN_POSTER_PATH, movie.getPosterPath());
-                values.put(MovieContract.MoviesEntry.COLUMN_BACKDROP_PATH, movie.getBackDropPath());
-                values.put(MovieContract.MoviesEntry.COLUMN_OVERVIEW, movie.getOverview());
-                values.put(MovieContract.MoviesEntry.COLUMN_TAGLINE, movie.getTagline());
-                values.put(MovieContract.MoviesEntry.COLUMN_RELEASE_DATE, movie.getReleaseDate());
-                values.put(MovieContract.MoviesEntry.COLUMN_RUNTIME, movie.getRuntime());
-                values.put(MovieContract.MoviesEntry.COLUMN_TRAILERS, String.valueOf(movie.getTrailers()));
-                values.put(MovieContract.MoviesEntry.COLUMN_IMDB_ID, movie.getImdbId());
-                values.put(MovieContract.MoviesEntry.COLUMN_HOMEPAGE, movie.getHomePage());
-                values.put(MovieContract.MoviesEntry.COLUMN_VOTE_COUNT, movie.getVoteCount());
-                values.put(MovieContract.MoviesEntry.COLUMN_VOTE_AVERAGE, movie.getVoteAverage());
-
-                Uri uri = getActivity().getContentResolver().insert(MovieContract.MoviesEntry.CONTENT_URI,
-                        values);
-
-                Toast.makeText(getActivity(),uri.toString(),Toast.LENGTH_LONG).show();
+                addMovie(movie);
             }
         });
 
 
+    }
+
+    private void addMovie(Movie movie) {
+
+        long movie_id;
+
+        Cursor cursor = getActivity().getContentResolver().query(
+                MovieContract.MoviesEntry.CONTENT_URI,
+                new String[]{MovieContract.MoviesEntry.COLUMN_MOVIE_ID},
+                MovieContract.MoviesEntry.COLUMN_MOVIE_ID + "=?",
+                new String[]{String.valueOf(movie.getMovieId())},
+                null
+        );
+
+        if (cursor.moveToFirst()){
+
+            int movieIdIndex = cursor.getColumnIndex(MovieContract.MoviesEntry.COLUMN_MOVIE_ID);
+            movie_id = cursor.getLong(movieIdIndex);
+
+            Toast.makeText(getActivity(),"Already on Favourites",Toast.LENGTH_LONG).show();
+
+        }
+        else {
+
+            ContentValues values = new ContentValues();
+            values.put(MovieContract.MoviesEntry.COLUMN_MOVIE_ID, movie.getMovieId());
+            values.put(MovieContract.MoviesEntry.COLUMN_TITLE, movie.getTitle());
+            values.put(MovieContract.MoviesEntry.COLUMN_POSTER_PATH, movie.getPosterPath());
+            values.put(MovieContract.MoviesEntry.COLUMN_BACKDROP_PATH, movie.getBackDropPath());
+            values.put(MovieContract.MoviesEntry.COLUMN_OVERVIEW, movie.getOverview());
+            values.put(MovieContract.MoviesEntry.COLUMN_TAGLINE, movie.getTagline());
+            values.put(MovieContract.MoviesEntry.COLUMN_RELEASE_DATE, movie.getReleaseDate());
+            values.put(MovieContract.MoviesEntry.COLUMN_RUNTIME, movie.getRuntime());
+            values.put(MovieContract.MoviesEntry.COLUMN_TRAILERS, String.valueOf(movie.getTrailers()));
+            values.put(MovieContract.MoviesEntry.COLUMN_IMDB_ID, movie.getImdbId());
+            values.put(MovieContract.MoviesEntry.COLUMN_HOMEPAGE, movie.getHomePage());
+            values.put(MovieContract.MoviesEntry.COLUMN_VOTE_COUNT, movie.getVoteCount());
+            values.put(MovieContract.MoviesEntry.COLUMN_VOTE_AVERAGE, movie.getVoteAverage());
+
+            Uri uri = getActivity().getContentResolver().insert(MovieContract.MoviesEntry.CONTENT_URI,
+                    values);
+            Toast.makeText(getActivity(), "Added to Favourites", Toast.LENGTH_LONG).show();
+        }
     }
 
     private Movie getMovie(long id) {
