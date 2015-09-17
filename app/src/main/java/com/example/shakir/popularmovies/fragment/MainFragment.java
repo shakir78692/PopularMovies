@@ -1,4 +1,4 @@
-package com.example.shakir.popularmovies;
+package com.example.shakir.popularmovies.fragment;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -22,6 +22,10 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.example.shakir.popularmovies.model.Poster;
+import com.example.shakir.popularmovies.R;
+import com.example.shakir.popularmovies.activity.DetailActivity;
+import com.example.shakir.popularmovies.adapter.GridAdapter;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
@@ -34,16 +38,14 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class MainActivityFragment extends Fragment {
 
-    final String LOG = MainActivityFragment.class.getSimpleName();
+public class MainFragment extends Fragment {
+
+    final String LOG = MainFragment.class.getSimpleName();
 
     protected Poster[] mPosters;
-    protected GridAdapter gridAdapter;
-    protected GridView gridView;
+    protected GridAdapter mGridAdapter;
+    protected GridView mGridView;
 
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected SwipeRefreshLayout.OnRefreshListener mRefreshListner = new SwipeRefreshLayout.OnRefreshListener() {
@@ -54,7 +56,7 @@ public class MainActivityFragment extends Fragment {
         }
     };
 
-    public MainActivityFragment() {
+    public MainFragment() {
     }
 
     @Override
@@ -69,8 +71,8 @@ public class MainActivityFragment extends Fragment {
 
         TextView textView = (TextView) rootView.findViewById(android.R.id.empty);
         mPosters = new Poster[0];
-        gridView = (GridView) rootView.findViewById(R.id.gridView);
-        gridView.setEmptyView(textView);
+        mGridView = (GridView) rootView.findViewById(R.id.gridView);
+        mGridView.setEmptyView(textView);
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setOnRefreshListener(mRefreshListner);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.blue_500, R.color.red_500,
@@ -181,10 +183,10 @@ public class MainActivityFragment extends Fragment {
 
     private void UpdateAdapter() {
 
-        gridAdapter = new GridAdapter(getActivity(),mPosters);
-        gridView.setAdapter(gridAdapter);
+        mGridAdapter = new GridAdapter(getActivity(),mPosters);
+        mGridView.setAdapter(mGridAdapter);
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 

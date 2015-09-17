@@ -1,4 +1,4 @@
-package com.example.shakir.popularmovies;
+package com.example.shakir.popularmovies.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,11 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.example.shakir.popularmovies.model.Poster;
+import com.example.shakir.popularmovies.R;
 import com.squareup.picasso.Picasso;
 
-/**
- * Created by Shakir on 17/08/15.
- */
 public class GridAdapter extends BaseAdapter {
 
     private static final String LOG = GridAdapter.class.getSimpleName();

@@ -1,13 +1,12 @@
-package com.example.shakir.popularmovies;
+package com.example.shakir.popularmovies.activity;
 
+import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import com.example.shakir.popularmovies.R;
 
 public class Settings extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
 

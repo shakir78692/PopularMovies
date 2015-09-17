@@ -1,4 +1,4 @@
-package com.example.shakir.popularmovies;
+package com.example.shakir.popularmovies.fragment;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
@@ -19,6 +19,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shakir.popularmovies.model.Movie;
+import com.example.shakir.popularmovies.R;
+import com.example.shakir.popularmovies.model.Trailer;
 import com.example.shakir.popularmovies.data.MovieContract;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -33,12 +36,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class DetailActivityFragment extends Fragment {
 
-    private static final String LOG = DetailActivityFragment.class.getSimpleName();
+public class DetailFragment extends Fragment {
+
+    private static final String LOG = DetailFragment.class.getSimpleName();
 
     ImageView backdropView;
     ImageView posterView;
@@ -49,7 +50,7 @@ public class DetailActivityFragment extends Fragment {
     TextView ratingView;
     Button fav;
 
-    public DetailActivityFragment() {
+    public DetailFragment() {
     }
 
     @Override

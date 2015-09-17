@@ -6,9 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.shakir.popularmovies.data.MovieContract.MoviesEntry;
 
-/**
- * Created by Yasin on 8/21/2015.
- */
+
 public class MovieDBHelper extends SQLiteOpenHelper {
 
 

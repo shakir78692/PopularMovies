@@ -5,9 +5,7 @@ import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-/**
- * Created by Yasin on 8/21/2015.
- */
+
 public class MovieContract{
 
     public static final String CONTENT_AUTHORITY = "com.example.shakir.popularmovies.app";

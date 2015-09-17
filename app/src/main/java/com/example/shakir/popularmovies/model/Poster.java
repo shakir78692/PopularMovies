@@ -1,8 +1,6 @@
-package com.example.shakir.popularmovies;
+package com.example.shakir.popularmovies.model;
 
-/**
- * Created by Shakir on 17/08/15.
- */
+
 public class Poster {
 
     private int mMovieId;

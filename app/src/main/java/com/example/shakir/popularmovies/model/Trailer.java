@@ -1,8 +1,6 @@
-package com.example.shakir.popularmovies;
+package com.example.shakir.popularmovies.model;
 
-/**
- * Created by Shakir on 17/08/15.
- */
+
 public class Trailer {
 
     String mName;
@@ -37,5 +35,10 @@ public class Trailer {
 
     public void setType(String type) {
         mType = type;
+    }
+
+    public String toString(){
+        // TODO
+        return null;
     }
 }
