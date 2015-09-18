@@ -39,9 +39,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 
-public class MainFragment extends Fragment {
+public class BrowseFragment extends Fragment {
 
-    final String LOG = MainFragment.class.getSimpleName();
+    final String LOG = BrowseFragment.class.getSimpleName();
 
     protected Poster[] mPosters;
     protected GridAdapter mGridAdapter;
@@ -56,7 +56,7 @@ public class MainFragment extends Fragment {
         }
     };
 
-    public MainFragment() {
+    public BrowseFragment() {
     }
 
     @Override

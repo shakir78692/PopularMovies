@@ -17,4 +17,8 @@
     <string name="grid_empty_label">No movies found!</string>
     <string name="general_error_title">Oops!</string>
     <string name="no_internet_error">No internet connectivity</string>
+    <string name="backdrop_description">backdrop</string>
+    <string name="poster_description">poster</string>
+    <string name="fav_description">favourite</string>
+    <string name="play_description">play</string>
 </resources>

@@ -14,15 +14,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.shakir.popularmovies.model.Movie;
 import com.example.shakir.popularmovies.R;
-import com.example.shakir.popularmovies.model.Trailer;
+import com.example.shakir.popularmovies.adapter.GridAdapter;
 import com.example.shakir.popularmovies.data.MovieContract;
+import com.example.shakir.popularmovies.model.Movie;
+import com.example.shakir.popularmovies.model.Trailer;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
@@ -40,6 +40,7 @@ import java.io.IOException;
 public class DetailFragment extends Fragment {
 
     private static final String LOG = DetailFragment.class.getSimpleName();
+    private boolean mFavourated = false;
 
     ImageView backdropView;
     ImageView posterView;
@@ -48,7 +49,7 @@ public class DetailFragment extends Fragment {
     TextView runtimeView;
     TextView yearView;
     TextView ratingView;
-    Button fav;
+    ImageView fav;
 
     public DetailFragment() {
     }
@@ -70,7 +71,7 @@ public class DetailFragment extends Fragment {
         runtimeView = (TextView) rootView.findViewById(R.id.runtimeView);
         yearView = (TextView) rootView.findViewById(R.id.yearView);
         ratingView = (TextView) rootView.findViewById(R.id.ratingView);
-        fav = (Button) rootView.findViewById(R.id.favButton);
+        fav = (ImageView) rootView.findViewById(R.id.favButton);
 
         getMovie(movie_id);
 
@@ -81,10 +82,10 @@ public class DetailFragment extends Fragment {
     private void updateDisplay(final Movie movie) {
 
 
-        Picasso.with(getActivity()).load(movie.getFinalBackdropPath()).placeholder(R.drawable.abc).
+        Picasso.with(getActivity()).load(movie.getFinalBackdropPath()).placeholder(R.drawable.backdrop_placeholder).
                 fit().centerInside().into(backdropView);
 
-        Picasso.with(getActivity()).load(movie.getFinalPosterPath()).placeholder(R.drawable.xyz)
+        Picasso.with(getActivity()).load(movie.getFinalPosterPath()).placeholder(R.drawable.poster_placeholder)
                 .fit().centerInside().into(posterView);
 
         title.setText(movie.getTitle());
@@ -102,21 +103,35 @@ public class DetailFragment extends Fragment {
             }
         });
 
+
+        if (GridAdapter.isFavourite(movie.getMovieId(),getActivity())){
+
+            mFavourated = true;
+        }
+
+        if (mFavourated){
+
+            fav.setImageResource(R.drawable.ic_favorite_black_24dp);
+        }
+
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addMovie(movie);
+
+                actionFavourite(movie, (ImageView) v,getActivity());
+
             }
         });
 
 
     }
 
-    private void addMovie(Movie movie) {
+
+    public static void actionFavourite(Movie movie, ImageView view, Context context) {
 
         long movie_id;
 
-        Cursor cursor = getActivity().getContentResolver().query(
+        Cursor cursor = context.getContentResolver().query(
                 MovieContract.MoviesEntry.CONTENT_URI,
                 new String[]{MovieContract.MoviesEntry.COLUMN_MOVIE_ID},
                 MovieContract.MoviesEntry.COLUMN_MOVIE_ID + "=?",
@@ -126,10 +141,15 @@ public class DetailFragment extends Fragment {
 
         if (cursor.moveToFirst()){
 
-            int movieIdIndex = cursor.getColumnIndex(MovieContract.MoviesEntry.COLUMN_MOVIE_ID);
-            movie_id = cursor.getLong(movieIdIndex);
+            context.getContentResolver().delete(
+                    MovieContract.MoviesEntry.CONTENT_URI,
+                    MovieContract.MoviesEntry.COLUMN_MOVIE_ID+"=?",
+                    new String[]{String.valueOf(movie.getMovieId())}
+            );
 
-            Toast.makeText(getActivity(),"Already on Favourites",Toast.LENGTH_LONG).show();
+            view.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+
+            Toast.makeText(context,"Removed",Toast.LENGTH_SHORT).show();
 
         }
         else {
@@ -149,10 +169,15 @@ public class DetailFragment extends Fragment {
             values.put(MovieContract.MoviesEntry.COLUMN_VOTE_COUNT, movie.getVoteCount());
             values.put(MovieContract.MoviesEntry.COLUMN_VOTE_AVERAGE, movie.getVoteAverage());
 
-            Uri uri = getActivity().getContentResolver().insert(MovieContract.MoviesEntry.CONTENT_URI,
+            Uri uri = context.getContentResolver().insert(MovieContract.MoviesEntry.CONTENT_URI,
                     values);
-            Toast.makeText(getActivity(), "Added to Favourites", Toast.LENGTH_LONG).show();
+
+            view.setImageResource(R.drawable.ic_favorite_black_24dp);
+
+            Toast.makeText(context, "Added to Favourites", Toast.LENGTH_SHORT).show();
         }
+
+        cursor.close();
     }
 
     private Movie getMovie(long id) {
