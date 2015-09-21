@@ -37,8 +37,4 @@ public class Trailer {
         mType = type;
     }
 
-    public String toString(){
-        // TODO
-        return null;
-    }
 }

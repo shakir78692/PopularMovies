@@ -95,7 +95,7 @@ public class GridAdapter extends BaseAdapter {
             viewHolder.titleView.setText(title);
         }
 
-        if (isFavourite(mPosters[position].getMovieId(),mContext)){
+        if (isFavourite(mPosters[position].getMovieId(),mContext) == true){
 
             viewHolder.fav.setImageResource(R.drawable.ic_favorite_black_24dp);
 
@@ -134,6 +134,8 @@ public class GridAdapter extends BaseAdapter {
         }
 
         movieCursor.close();
+
         return favourite;
+
     }
 }

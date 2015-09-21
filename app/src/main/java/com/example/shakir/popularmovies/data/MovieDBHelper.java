@@ -30,6 +30,7 @@ public class MovieDBHelper extends SQLiteOpenHelper {
                 + MoviesEntry.COLUMN_TAGLINE + " TEXT, "
                 + MoviesEntry.COLUMN_RELEASE_DATE + " TEXT, "
                 + MoviesEntry.COLUMN_RUNTIME + " INTEGER, "
+                + MoviesEntry.COLUMN_REVIEWS + " TEXT, "
                 + MoviesEntry.COLUMN_TRAILERS + " TEXT, "
                 + MoviesEntry.COLUMN_IMDB_ID + " TEXT, "
                 + MoviesEntry.COLUMN_HOMEPAGE + " TEXT, "

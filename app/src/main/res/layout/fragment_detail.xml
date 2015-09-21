@@ -22,17 +22,19 @@
                 android:id="@+id/main"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:paddingTop="16dp">
+                android:paddingTop="16dp"
+                android:weightSum="2">
 
                 <ImageView
                     android:id="@+id/posterView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/poster_placeholder"
-                    android:paddingRight="8dp"
-                    android:contentDescription="@string/poster_description"/>
+                    android:contentDescription="@string/poster_description"
+                    android:layout_weight="1"
+                    android:layout_marginRight="16dp"/>
 
                 <LinearLayout
                     android:orientation="vertical"

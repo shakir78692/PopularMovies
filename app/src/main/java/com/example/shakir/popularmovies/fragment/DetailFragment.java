@@ -10,8 +10,13 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,9 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shakir.popularmovies.R;
+import com.example.shakir.popularmovies.Utility;
 import com.example.shakir.popularmovies.adapter.GridAdapter;
 import com.example.shakir.popularmovies.data.MovieContract;
 import com.example.shakir.popularmovies.model.Movie;
+import com.example.shakir.popularmovies.model.Review;
 import com.example.shakir.popularmovies.model.Trailer;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -40,7 +47,11 @@ import java.io.IOException;
 public class DetailFragment extends Fragment {
 
     private static final String LOG = DetailFragment.class.getSimpleName();
+    private static final String SHARE_HASHTAG = " #Popular Movies App";
     private boolean mFavourated = false;
+    private ShareActionProvider mShareActionProvider;
+    private Movie mMovie;
+    private String mShareStr;
 
     ImageView backdropView;
     ImageView posterView;
@@ -52,6 +63,7 @@ public class DetailFragment extends Fragment {
     ImageView fav;
 
     public DetailFragment() {
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -77,6 +89,32 @@ public class DetailFragment extends Fragment {
 
 
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        inflater.inflate(R.menu.menu_detail_frag, menu);
+
+        // Retrieve the share menu item
+        MenuItem menuItem = menu.findItem(R.id.action_share);
+
+        // Get the provider and hold onto it to set/change the share intent.
+        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+
+        // If onLoadFinished happens before this, we can go ahead and set the share intent now.
+        if (mMovie != null) {
+            mShareActionProvider.setShareIntent(createShareMovieIntent());
+        }
+    }
+
+    private Intent createShareMovieIntent() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        shareIntent.setType("text/plain");
+        mShareStr ="Check out "+mMovie.getTitle() + "Trailer on youtu.be/"+mMovie.getTrailers()[0].getSource();
+        shareIntent.putExtra(Intent.EXTRA_TEXT, mShareStr+SHARE_HASHTAG);
+        return shareIntent;
     }
 
     private void updateDisplay(final Movie movie) {
@@ -118,14 +156,12 @@ public class DetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                actionFavourite(movie, (ImageView) v,getActivity());
+                actionFavourite(movie, (ImageView) v, getActivity());
 
             }
         });
 
-
     }
-
 
     public static void actionFavourite(Movie movie, ImageView view, Context context) {
 
@@ -143,7 +179,7 @@ public class DetailFragment extends Fragment {
 
             context.getContentResolver().delete(
                     MovieContract.MoviesEntry.CONTENT_URI,
-                    MovieContract.MoviesEntry.COLUMN_MOVIE_ID+"=?",
+                    MovieContract.MoviesEntry.COLUMN_MOVIE_ID + "=?",
                     new String[]{String.valueOf(movie.getMovieId())}
             );
 
@@ -163,7 +199,8 @@ public class DetailFragment extends Fragment {
             values.put(MovieContract.MoviesEntry.COLUMN_TAGLINE, movie.getTagline());
             values.put(MovieContract.MoviesEntry.COLUMN_RELEASE_DATE, movie.getReleaseDate());
             values.put(MovieContract.MoviesEntry.COLUMN_RUNTIME, movie.getRuntime());
-            values.put(MovieContract.MoviesEntry.COLUMN_TRAILERS, String.valueOf(movie.getTrailers()));
+            values.put(MovieContract.MoviesEntry.COLUMN_REVIEWS, Utility.reviewsToString(movie.getReviews()));
+            values.put(MovieContract.MoviesEntry.COLUMN_TRAILERS, Utility.trailersToString(movie.getTrailers()));
             values.put(MovieContract.MoviesEntry.COLUMN_IMDB_ID, movie.getImdbId());
             values.put(MovieContract.MoviesEntry.COLUMN_HOMEPAGE, movie.getHomePage());
             values.put(MovieContract.MoviesEntry.COLUMN_VOTE_COUNT, movie.getVoteCount());
@@ -180,7 +217,7 @@ public class DetailFragment extends Fragment {
         cursor.close();
     }
 
-    private Movie getMovie(long id) {
+    private void getMovie(long id) {
 
         final Movie[] movie = new Movie[1];
         String api_key = "199529fbee9c95fdf96c91ea80f2452e";
@@ -192,7 +229,7 @@ public class DetailFragment extends Fragment {
         Uri uri = Uri.parse(BASE_URL).buildUpon()
                 .appendPath(movie_id + "?")
                 .appendQueryParameter(API_KEY, api_key)
-                .appendQueryParameter(APP_TO_RES, "trailers")
+                .appendQueryParameter(APP_TO_RES, "trailers,reviews")
                 .build();
 
 
@@ -222,24 +259,23 @@ public class DetailFragment extends Fragment {
 
                     if (response.isSuccessful()) {
 
-                        movie[0] = parseMovie(jsonData);
+                        mMovie = parseMovie(jsonData);
 
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                updateDisplay(movie[0]);
+                                updateDisplay(mMovie);
                             }
                         });
 
                     }
 
-                    Log.d(LOG, jsonData);
+//                    Log.d(LOG, jsonData);
                 }
 
 
             });
 
-            return movie[0];
         } else {
 
             Log.d(LOG, "No Internet Connection");
@@ -249,7 +285,6 @@ public class DetailFragment extends Fragment {
                     .setPositiveButton(android.R.string.ok,null);
             AlertDialog dialog = builder.create();
             dialog.show();
-            return null;
         }
 
     }
@@ -285,15 +320,27 @@ public class DetailFragment extends Fragment {
 
                 Trailer trailer = new Trailer(name, source, type);
                 trailers[i] = trailer;
+            }
 
-                Log.d(LOG, name + " " + source + " " + type);
+            JSONObject reviewObject = jsonObject.getJSONObject("reviews");
+            JSONArray reviewArray = reviewObject.getJSONArray("results");
+            Review[] reviews = new Review[reviewArray.length()];
+            for (int i =0; i < reviewArray.length(); i++){
+
+                JSONObject reviewJson = reviewArray.getJSONObject(i);
+                String author = reviewJson.getString("author");
+                String content = reviewJson.getString("content");
+
+                Review review = new Review(author,content);
+                reviews[i] = review;
             }
 
             Movie movie = new Movie(movieId, title, posterPath, backDropPath, overview,tagline, releaseDate,
-                    runtime, trailers, imdbId, homePage, voteCount, voteAverage);
+                    runtime, reviews, trailers, imdbId, homePage, voteCount, voteAverage);
 
             Log.d(LOG, movieId + " " + title + " " + posterPath + " " + backDropPath + " " + overview
-                    + " " + releaseDate + " " + tagline+" " + imdbId + " " + homePage + " "
+                    + " " + releaseDate + " " + tagline+" "+Utility.reviewsToString(reviews)+" "
+                    + Utility.trailersToString(trailers)+ imdbId + " " + homePage + " "
                     + voteCount + " " + voteAverage);
 
             return movie;

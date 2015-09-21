@@ -10,6 +10,7 @@ public class Movie {
     String mTagline;
     String mReleaseDate;
     int mRuntime;
+    Review[] mReviews;
     Trailer[] mTrailers;
     String mImdbId;
     String mHomePage;
@@ -17,7 +18,7 @@ public class Movie {
     double mVoteAverage;
 
 
-    public Movie(int movieId, String title, String posterPath, String backDropPath, String overview,String tagline, String releaseDate, int runtime, Trailer[] trailers, String imdbId, String homePage, double voteCount, double voteAverage) {
+    public Movie(int movieId, String title, String posterPath, String backDropPath, String overview,String tagline, String releaseDate, int runtime,Review[] reviews, Trailer[] trailers, String imdbId, String homePage, double voteCount, double voteAverage) {
         mMovieId = movieId;
         mTitle = title;
         mPosterPath = posterPath;
@@ -26,12 +27,18 @@ public class Movie {
         mTagline = tagline;
         mReleaseDate = releaseDate;
         mRuntime = runtime;
+        mReviews = reviews;
         mTrailers = trailers;
         mImdbId = imdbId;
         mHomePage = homePage;
         mVoteCount = voteCount;
         mVoteAverage = voteAverage;
 
+    }
+
+
+    public Review[] getReviews() {
+        return mReviews;
     }
 
     public String getTagline() {

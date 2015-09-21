@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">PopularMovies</string>
+<resources xmlns:xliff="http://schemas.android.com/apk/res/android">
+    <string name="app_name">Popular Movies</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_detail">Details</string>
@@ -21,4 +21,8 @@
     <string name="poster_description">poster</string>
     <string name="fav_description">favourite</string>
     <string name="play_description">play</string>
+    <string name="share_action_label">share</string>
+
+    <string name="share_template">Check out \'<xliff:g id="title">%1$s</xliff:g>\' at <xliff:g id="url">%2$s</xliff:g></string>
+    <string name="title_activity_favourite">Favourite</string>
 </resources>

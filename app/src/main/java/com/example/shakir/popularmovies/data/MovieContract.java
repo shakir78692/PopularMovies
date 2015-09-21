@@ -42,6 +42,8 @@ public class MovieContract{
 
         public static final String COLUMN_RUNTIME = "runtime";
 
+        public static final String COLUMN_REVIEWS = "reviews";
+
         public static final String COLUMN_TRAILERS = "trailers";
 
         public static final String COLUMN_IMDB_ID = "imdb_id";
